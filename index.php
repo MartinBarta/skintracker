@@ -51,7 +51,7 @@ foreach ($skins as $skin) {
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>test1</title>
+<title>CS2 Skin Tracker</title>
 <style>
     body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -201,7 +201,7 @@ form button:hover {
 </head>
 <body>
 
-<h1>CS:GO Skin Tracker</h1>
+<h1>CS2 Skin Tracker</h1>
 
 <?= $message ?>
 
