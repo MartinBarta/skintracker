@@ -207,10 +207,10 @@ form button:hover {
 
 <form method="POST" action="">
     <label for="name">Skin Name</label>
-    <input type="text" id="name" name="name" placeholder="Example: USP-S | Cyrex" required />
+    <input type="text" id="name" name="name" placeholder="Gun | Name" required />
 
     <label for="url">Skin URL</label>
-    <input type="text" id="url" name="url" placeholder="https://csgoskins.gg/items/usp-s-cyrex/factory-new" required />
+    <input type="text" id="url" name="url" placeholder="https://skinurl/item/skin/condition" required />
 
     <label for="condition">Condition</label>
     <select id="condition" name="condition" required>
