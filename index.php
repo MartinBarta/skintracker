@@ -1,5 +1,5 @@
 <?php
-$jsonFile = __DIR__ . "/skintracker/skins.json";
+$jsonFile = __DIR__ . "/../skins.json";
 $message = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
