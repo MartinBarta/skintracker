@@ -1,5 +1,5 @@
 <?php
-$jsonFile = "/skins.json";
+$jsonFile = __DIR__ . "/skintracker/skins.json";
 $message = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -51,7 +51,7 @@ foreach ($skins as $skin) {
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>test3</title>
+<title>test</title>
 <style>
     body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
