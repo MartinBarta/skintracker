@@ -51,7 +51,7 @@ foreach ($skins as $skin) {
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>test2</title>
+<title>test3</title>
 <style>
     body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
