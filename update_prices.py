@@ -19,9 +19,14 @@ async def update_skins():
     for skin in skins:
         try:
             print(f"Updating: {skin['name']}")
-            await page.goto(skin["url"], timeout=30000)
-            await page.waitForSelector("div.relative", timeout=60000)
+            await page.goto(skin["url"], timeout=60000, waitUntil='networkidle2')
+            await page.waitForSelector("div.relative", timeout=30000)
+        except Exception as e:
+            print(f"Error loading page for {skin['name']}: {e}")
             content = await page.content()
+            with open(f"error_{skin['name'].replace(' ', '_')}.html", "w", encoding='utf-8') as f:
+                f.write(content)
+            continue
             soup = BeautifulSoup(content, 'html.parser')
 
             # Price
