@@ -2,9 +2,11 @@ import json
 import asyncio
 import random
 import time
+import os
 from pyppeteer import launch
 from bs4 import BeautifulSoup
 
+os.environ['PYPPETEER_EXECUTABLE_PATH'] = '/usr/bin/chromium-browser'
 json_path = "/var/www/html/skintracker/skins.json"
 
 async def update_skins():
