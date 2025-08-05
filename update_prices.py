@@ -13,7 +13,7 @@ async def update_skins():
     with open(json_path, "r") as f:
         skins = json.load(f)
 
-    browser = await launch(headless=True, args=['--no-sandbox'])
+    browser = await launch(executablePath='/usr/bin/chromium-browser',headless=True, args=['--no-sandbox'])
     page = await browser.newPage()
 
     for skin in skins:
