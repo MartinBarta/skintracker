@@ -15,7 +15,7 @@ async def update_skins():
         skins = json.load(f)
 
     async with async_playwright() as p:
-        browser = await p.chromium.launch(headless=True, args=["--no-sandbox"])
+        browser = await p.chromium.launch(headless=False, args=["--no-sandbox"])
         page = await browser.new_page()
 
         for skin in skins:
