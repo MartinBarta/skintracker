@@ -23,7 +23,7 @@ def create_scraper_with_proxy(proxy):
         'custom': 'ScraperBot'
     }, interpreter='nodejs', delay=10, proxy=proxy)
 
-scraper = create_scraper_with_proxy(current_proxy)
+scraper = cloudscraper.create_scraper()  # create once outside loop
 
 for skin in skins:
     success = False
@@ -31,7 +31,10 @@ for skin in skins:
     while not success and retries < len(proxy_list):
         try:
             print(f"Updating: {skin['name']} using proxy {current_proxy}")
-            response = scraper.get(skin["url"], timeout=20)
+            response = scraper.get(
+                skin["url"],
+                timeout=20,
+                proxies={"http": current_proxy, "https": current_proxy})
             if "cf-browser-verification" in response.text.lower():
                 raise Exception("Cloudflare challenge page detected")
 
