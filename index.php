@@ -215,6 +215,7 @@ form button:hover {
     <label for="condition">Condition</label>
     <select id="condition" name="condition" required>
         <option value="">Select Condition</option>
+        <option value="Souvenir Factory New">Souvenir Factory New</option>
         <option value="Factory New">Factory New</option>
         <option value="Minimal Wear">Minimal Wear</option>
         <option value="Field-Tested">Field-Tested</option>
