@@ -7,7 +7,8 @@ import random
 json_path = "/var/www/html/skintracker/skins.json"
 
 with open("/var/www/html/skintracker/proxies.txt") as f:
-    proxy_list = [line.strip() for line in f if line.strip()]
+    proxy_list = [f"http://{line.strip()}" for line in f if line.strip()]
+
 
 # Load skins
 with open(json_path, "r") as f:
