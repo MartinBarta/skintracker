@@ -1,13 +1,13 @@
 import asyncio
 import json
 import random
+import os
 from bs4 import BeautifulSoup
 from playwright.async_api import async_playwright
+from playwright_stealth import stealth_async
 
 JSON_PATH = "/var/www/html/skintracker/skins.json"
 DEBUG_SAVE_PATH = "/tmp/skintracker_debug"
-
-import os
 os.makedirs(DEBUG_SAVE_PATH, exist_ok=True)
 
 async def update_skins():
@@ -16,20 +16,24 @@ async def update_skins():
 
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=False, args=["--no-sandbox"])
-        page = await browser.new_page()
+        context = await browser.new_context()
+        page = await context.new_page()
+
+        # Apply stealth to bypass Cloudflare
+        await stealth_async(page)
 
         for skin in skins:
             print(f"Updating: {skin['name']}")
             try:
                 await page.goto(skin["url"], timeout=60000, wait_until="networkidle")
 
-                # Wait for the container div to appear (adjust if site changes)
+                # Wait for the main container
                 await page.wait_for_selector("div.relative", timeout=30000)
 
                 content = await page.content()
                 soup = BeautifulSoup(content, "html.parser")
 
-                # Parse prices
+                # Price parsing
                 containers = soup.select("div.relative.flex.px-4.py-2.hover\\:bg-gray-700.transition-colors.bg-gray-700")
                 price_found = False
                 for container in containers:
@@ -47,7 +51,7 @@ async def update_skins():
                 if not price_found:
                     print(f"→ Price for condition '{skin['condition']}' not found.")
 
-                # Parse image
+                # Image parsing
                 img_tag = soup.select_one("div.relative > img")
                 if img_tag and img_tag.has_attr("src"):
                     skin["image"] = img_tag["src"]
@@ -57,11 +61,9 @@ async def update_skins():
 
             except Exception as e:
                 print(f"Error updating {skin['name']}: {e}")
-                # Save HTML and screenshot for debugging
-                content = await page.content()
                 safe_name = skin['name'].replace(' ', '_').replace('|', '').replace('/', '')
                 with open(f"{DEBUG_SAVE_PATH}/{safe_name}.html", "w", encoding="utf-8") as f:
-                    f.write(content)
+                    f.write(await page.content())
                 await page.screenshot(path=f"{DEBUG_SAVE_PATH}/{safe_name}.png")
                 print(f"Saved debug files for {skin['name']} in {DEBUG_SAVE_PATH}")
 
