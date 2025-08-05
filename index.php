@@ -225,9 +225,9 @@ form button:hover {
     <label for="category">Category</label>
     <select id="category" name="category" required>
         <option value="">Select Category</option>
-        <option value="Budget">Budget</option>
-        <option value="Mid-Range">Mid-Range</option>
-        <option value="Expensive">Expensive</option>
+        <option value="Light Guns">Light Guns</option>
+        <option value="Mid Guns">Mid Guns</option>
+        <option value="Heavy Guns">Heavy Guns</option>
     </select>
 
     <button type="submit">Add Skin</button>
