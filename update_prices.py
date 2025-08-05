@@ -14,7 +14,11 @@ options.headless = True
 options.add_argument("--no-sandbox")
 options.add_argument("--disable-dev-shm-usage")
 
-driver = uc.Chrome(options=options)
+driver = uc.Chrome(
+    options=options,
+    driver_executable_path="/usr/bin/chromedriver",  # Or the correct path from step 2
+    browser_executable_path="/usr/bin/chromium-browser"
+)
 
 # Load skins
 with open(json_path, "r") as f:
