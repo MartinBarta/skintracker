@@ -20,7 +20,7 @@ async def update_skins():
         try:
             print(f"Updating: {skin['name']}")
             await page.goto(skin["url"], timeout=30000)
-            await page.waitForSelector("div.relative", timeout=15000)
+            await page.waitForSelector("div.relative", timeout=60000)
             content = await page.content()
             soup = BeautifulSoup(content, 'html.parser')
 
