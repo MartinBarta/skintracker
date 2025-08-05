@@ -54,5 +54,3 @@ for skin in skins:
 
 with open(json_path, "w") as f:
     json.dump(skins, f, indent=2)
-
-print("All skins updated successfully.")
